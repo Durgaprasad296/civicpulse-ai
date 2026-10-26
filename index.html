@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CivicPulse AI | Your City, Your Voice</title>
+<style>
+:root{--blue:#1677ef;--navy:#102443;--bg:#f5f8fc;--muted:#66758a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial, sans-serif;background:var(--bg);color:var(--navy)}
+header{background:white;padding:18px 7%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;border-bottom:1px solid #e5eaf2}
+.logo{font-size:22px;font-weight:800;color:var(--blue)}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--navy);text-decoration:none;font-size:14px;font-weight:600}
+button,.btn{background:var(--blue);color:white;border:0;padding:12px 18px;border-radius:9px;cursor:pointer;font-weight:bold}
+button:hover,.btn:hover{opacity:.88}
+main{max-width:1150px;margin:auto;padding:35px 20px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;padding:35px 0}
+.tag{color:#138b80;font-weight:bold;font-size:14px}
+h1{font-size:clamp(38px,5vw,60px);line-height:1.08;margin:18px 0}
+h1 span{color:var(--blue)}
+p{line-height:1.65;color:var(--muted)}
+.panel,.card{background:white;border:1px solid #e5eaf2;border-radius:17px;padding:23px;box-shadow:0 8px 28px #17365d0b}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.stat{background:#f2f7ff;border-radius:12px;padding:14px}
+.stat strong{display:block;font-size:25px;margin-bottom:5px}
+.stat small{color:var(--muted)}
+.issue{padding:13px 0;border-bottom:1px solid #edf0f5}
+.status{font-size:12px;color:#087f67;font-weight:bold}
+section{margin:35px 0;scroll-margin-top:20px}
+h2{font-size:28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.icon{font-size:30px}
+form{display:grid;gap:14px}
+label{font-weight:bold;font-size:14px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d6deea;border-radius:9px;font:inherit;background:white}
+textarea{min-height:100px;resize:vertical}
+.notice{background:#eaf7f2;color:#12664e;padding:13px;border-radius:9px;display:none}
+.report-row{border-bottom:1px solid #e8edf3;padding:14px 0}
+footer{text-align:center;background:#102443;color:white;padding:25px}
+footer p{color:#d0d9e7}
+@media(max-width:750px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}header{padding:16px 5%}nav{gap:12px}main{padding:20px 14px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">◉ CivicPulse AI</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#report">Report Issue</a>
+    <a href="#map">Live Map</a>
+    <a href="#dashboard">Dashboard</a>
+  </nav>
+</header>
+<main>
+<section class="hero" id="home">
+  <div>
+    <div class="tag">● YOUR CITY. YOUR VOICE. REAL CHANGE.</div>
+    <h1>See a Problem?<br><span>Make It Visible.</span></h1>
+    <p>Help improve your community. Report potholes, water leaks, overflowing garbage and broken streetlights in one simple place.</p>
+    <a class="btn" href="#report" style="display:inline-block;text-decoration:none">Report an Issue →</a>
+    <a href="#map" style="margin-left:12px;color:var(--blue);font-weight:bold;text-decoration:none">Explore Reports</a>
+  </div>
+  <div class="panel" id="dashboard">
+    <h3>Community Dashboard</h3>
+    <div class="stats">
+      <div class="stat"><strong id="total">3</strong><small>Reported</small></div>
+      <div class="stat"><strong id="resolved">1</strong><small>Resolved</small></div>
+      <div class="stat"><strong id="pending">2</strong><small>Pending</small></div>
+    </div>
+    <div id="recent">
+      <div class="issue"><b>Road damage</b><p>Demo report · Tindivanam</p><span class="status">● Submitted</span></div>
+      <div class="issue"><b>Water leakage</b><p>Demo report · Community area</p><span class="status">● Under review</span></div>
+      <div class="issue"><b>Garbage overflow</b><p>Demo report · Market area</p><span class="status">● Resolved</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>How CivicPulse Works</h2>
+  <div class="grid">
+    <div class="card"><div class="icon">📸</div><h3>1. Report</h3><p>Describe a local problem and add its location.</p></div>
+    <div class="card"><div class="icon">🤖</div><h3>2. Analyze</h3><p>Organize reports by category and priority for review.</p></div>
+    <div class="card"><div class="icon">🏙️</div><h3>3. Track</h3><p>Follow report statuses and community updates.</p></div>
+  </div>
+</section>
+
+<section id="report">
+  <h2>Report a Civic Issue</h2>
+  <p>Submit a sample report. This prototype saves reports in this browser only.</p>
+  <div class="panel">
+    <div id="notice" class="notice"></div>
+    <form id="reportForm">
+      <div><label for="category">Issue category</label>
+        <select id="category" required>
+          <option value="">Choose an issue</option>
+          <option>Pothole / Road Damage</option>
+          <option>Garbage Overflow</option>
+          <option>Water Leakage</option>
+          <option>Broken Streetlight</option>
+          <option>Blocked Drainage</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div><label for="description">Describe the problem</label>
+        <textarea id="description" required placeholder="Explain what happened and who may be affected..."></textarea>
+      </div>
+      <div><label for="location">Location or area</label>
+        <input id="location" required placeholder="e.g. Near bus stand, Tindivanam">
+      </div>
+      <div><label for="severity">Severity</label>
+        <select id="severity"><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select>
+      </div>
+      <div><label for="photo">Photo (optional)</label><input type="file" id="photo" accept="image/*"></div>
+      <button type="submit">Submit Report</button>
+    </form>
+  </div>
+</section>
+
+<section id="map">
+  <h2>Community Reports</h2>
+  <p>Reports submitted in this browser appear below. This prototype does not yet have a live geographic map.</p>
+  <div class="panel">
+    <input id="search" placeholder="Search reports by ID, issue, or location...">
+    <div id="reportsList"></div>
+  </div>
+</section>
+<section>
+  <h2>Built for Better Communities</h2>
+  <div class="grid">
+    <div class="card"><div class="icon">🌍</div><h3>Community First</h3><p>Make local problems easier to communicate.</p></div>
+    <div class="card"><div class="icon">🔎</div><h3>Transparency</h3><p>Give each submitted report a reference ID.</p></div>
+    <div class="card"><div class="icon">♿</div><h3>Accessible</h3><p>A simple responsive interface for different devices.</p></div>
+  </div>
+</section>
+</main>
+<footer><b>CivicPulse AI</b><p>Your City. Your Voice. Real Change.</p><small>Hackathon prototype · Reports are not automatically sent to government authorities.</small></footer>
+
+<script>
+const key="civicpulse_demo_reports_v1";
+let reports=[];
+try{reports=JSON.parse(localStorage.getItem(key)||"[]");if(!Array.isArray(reports))reports=[]}catch(e){reports=[]}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem(key,JSON.stringify(reports))}catch(e){}}
+function render(){
+ const all=reports;
+ $("total").textContent=3+all.length;
+ $("resolved").textContent=1+all.filter(r=>r.status==="Resolved").length;
+ $("pending").textContent=2+all.filter(r=>r.status!=="Resolved").length;
+ const q=$("search").value.toLowerCase();
+ const list=all.filter(r=>(r.id+" "+r.category+" "+r.location+" "+r.description).toLowerCase().includes(q));
+ $("reportsList").innerHTML=list.length?list.map(r=>`<div class="report-row"><b>${escapeHTML(r.category)}</b> · ${escapeHTML(r.id)}<p>${escapeHTML(r.description)}</p><p>📍 ${escapeHTML(r.location)} · ${escapeHTML(r.severity)} priority</p><span class="status">${escapeHTML(r.status)}</span></div>`).join(""):"<p>No matching submitted reports yet.</p>";
+}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+$("reportForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const file=$("photo").files[0];
+ if(file&&file.size>3*1024*1024){alert("Please choose a photo smaller than 3 MB.");return}
+ const report={id:"CP-"+Date.now().toString().slice(-8),category:$("category").value,description:$("description").value.trim(),location:$("location").value.trim(),severity:$("severity").value,status:"Submitted"};
+ reports.unshift(report);save();render();
+ $("notice").style.display="block";
+ $("notice").textContent="Report created successfully! Your reference ID is "+report.id+". This report is stored in this browser only.";
+ $("reportForm").reset();
+ location.hash="map";
+});
+$("search").addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
